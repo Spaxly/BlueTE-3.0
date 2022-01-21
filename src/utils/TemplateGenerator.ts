@@ -1,5 +1,5 @@
 import { botNameValue, TokenValue, GuildIDValue, SelectionValue } from "./Prompts";
-import { BotJS } from "./commands/JSBot";
+import { BotJS } from "./functions/generate/JSBot";
 
 export async function TemplateGenerator() {
     const botResp = await botNameValue();
