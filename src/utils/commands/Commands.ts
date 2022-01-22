@@ -31,11 +31,13 @@ import { InteractionCreateEvent } from "../../templates/javascript/interactionCr
 import { CommandHandlerGen } from "../../templates/javascript/commandHandler";
 import { EventHandlerGen } from "../../templates/javascript/eventHandler";
 import { PkgJSONGen } from "../../templates/javascript/packageJSON";
+import { PyBotClient } from "../../templates/python/Bot";
+import { PyTestCommand } from "../../templates/python/TestCommand";
 
 export async function JSBotCmd(botName: string, token: string, guildID: string, botID: string) {
     const replacedWhiteSpace = botName.replace(/\s/g, '');
     var i = randomNumber(1, 999);
-    
+
     Generating()
     
     exec(`mkdir ~/${replacedWhiteSpace}-${i}`);
@@ -98,4 +100,55 @@ export async function JSBotCmd(botName: string, token: string, guildID: string, 
 
     exec(`cd ~/${replacedWhiteSpace}-${i}/ && tsc`);
     TSBuild()
+}
+
+export async function PyBotCmd(botName: string, token: string, guildID: string, botID: string) {
+    const replacedWhiteSpace = botName.replace(/\s/g, '');
+    var i = randomNumber(1, 999);
+
+    Generating()
+    
+    exec(`mkdir ~/${replacedWhiteSpace}-${i}`);
+    BaseFolder()
+
+    exec(`mkdir ~/${replacedWhiteSpace}-${i}/config`);
+    ConfigFolder()
+
+    exec(`mkdir ~/${replacedWhiteSpace}-${i}/commands`);
+    CommandsFolder()
+
+    exec(`echo '${PyBotClient}' > ~/${replacedWhiteSpace}-${i}/bot.py`)
+    MainFile()
+
+    exec(`echo '${PyTestCommand}' > ~/${replacedWhiteSpace}-${i}/commands/testcommand.py`)
+    TestCommandFile()
+
+    exec(`echo 'TOKEN="${token}"\nGUILD_ID=${guildID}\nBOT_ID=${botID}' > ~/${replacedWhiteSpace}-${i}/config/config.py`)
+    ConfigFile()
+
+    exec(`pip install -U git+https://github.com/Pycord-Development/pycord`)
+    PkgInstall()
+}
+
+export async function TSBotCmd(botName: string, token: string, guildID: string, botID: string) {
+    const replacedWhiteSpace = botName.replace(/\s/g, '');
+    var i = randomNumber(1, 999);
+
+    Generating()
+
+    exec(`mkdir ~/${replacedWhiteSpace}-${i}`);
+    BaseFolder()
+
+    exec(`mkdir ~/${replacedWhiteSpace}-${i}/src`);
+    SourceFolder()
+
+    exec(`mkdir ~/${replacedWhiteSpace}-${i}/config`);
+    ConfigFolder()
+
+    exec(`mkdir ~/${replacedWhiteSpace}-${i}/src/commands`);
+    CommandsFolder()
+
+    exec(`mkdir ~/${replacedWhiteSpace}-${i}/src/utils`);
+    UtilsFolder()
+
 }

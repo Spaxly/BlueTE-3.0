@@ -1,5 +1,6 @@
 import { botNameValue, TokenValue, GuildIDValue, SelectionValue, BotIDValue } from "./Prompts";
 import { BotJS } from "./functions/JSBot";
+import { PyBot } from "./functions/PyBot";
 
 export async function TemplateGenerator() {
     const botResp = await botNameValue();
@@ -24,6 +25,7 @@ export async function TemplateGenerator() {
     }
 
     if (SelectionResp === 2) {
+        PyBot(botResp, tokenResp, guildIDResp, botIDResp)
         //console.log('Python works')
     }
 }
