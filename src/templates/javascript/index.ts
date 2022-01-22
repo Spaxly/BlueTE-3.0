@@ -7,7 +7,7 @@ client.commands = new Collection();
 client.events = new Collection();
 
 ['eventHandler', 'commandHandler'].forEach(handler => {
-    require('./handlers/ ' + handler)(client);
+    require('./handlers/' + handler)(client);
 });
 
 client.login(TOKEN);`

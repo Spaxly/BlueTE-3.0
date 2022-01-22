@@ -1,5 +1,5 @@
-import { botNameValue, TokenValue, GuildIDValue, SelectionValue } from "./Prompts";
-import { BotJS } from "./functions/generate/JSBot";
+import { botNameValue, TokenValue, GuildIDValue, SelectionValue, BotIDValue } from "./Prompts";
+import { BotJS } from "./functions/JSBot";
 
 export async function TemplateGenerator() {
     const botResp = await botNameValue();
@@ -11,9 +11,11 @@ export async function TemplateGenerator() {
     const guildIDResp = await GuildIDValue();
     //console.log(guildIDResp);
 
+    const botIDResp = await BotIDValue();
+
     const SelectionResp = await SelectionValue();
     if (SelectionResp === 0) {
-        BotJS(botResp)
+        BotJS(botResp, tokenResp, guildIDResp, botIDResp)
         //console.log('JavaScript Works')
     }
 

@@ -20,11 +20,20 @@ export async function TokenValue() {
 
 export async function GuildIDValue() {
     const guildIDResp = await prompts({
-        type: 'number',
+        type: 'text',
         name: 'guildID',
         message: 'Enter GuildID'
     });
     return guildIDResp.guildID;
+}
+
+export async function BotIDValue() {
+    const botIDResp = await prompts({
+        type: 'text',
+        name: 'botID',
+        message: 'Enter BotID'
+    });
+    return botIDResp.botID;
 }
 
 export async function SelectionValue() {

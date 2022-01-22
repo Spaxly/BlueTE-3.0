@@ -10,13 +10,29 @@ import {
     EventsFolder,
     HandlersFolder,
     ClientFile,
-    MainFile
-} from '../functions/Logger';
+    MainFile,
+    TestCommandFile,
+    ReadyEventFile,
+    InteractionCreateFile,
+    CommandHandlerFile,
+    EventHandlerFile,
+    ConfigFile,
+    PkgInstall,
+    TSConfig,
+    PkgJSONFile,
+    TSBuild
+} from '../Logger';
 
 import { ClientFileGen } from '../../templates/javascript/Client';
 import { MainFileGen } from "../../templates/javascript";
+import { TestCommandGen } from "../../templates/javascript/TestCommand";
+import { ReadyEventGen } from "../../templates/javascript/ready";
+import { InteractionCreateEvent } from "../../templates/javascript/interactionCreate";
+import { CommandHandlerGen } from "../../templates/javascript/commandHandler";
+import { EventHandlerGen } from "../../templates/javascript/eventHandler";
+import { PkgJSONGen } from "../../templates/javascript/packageJSON";
 
-export async function JSBotCmd(botName: string) {
+export async function JSBotCmd(botName: string, token: string, guildID: string, botID: string) {
     const replacedWhiteSpace = botName.replace(/\s/g, '');
     var i = randomNumber(1, 999);
     
@@ -48,4 +64,38 @@ export async function JSBotCmd(botName: string) {
 
     exec(`echo "${MainFileGen}" > ~/${replacedWhiteSpace}-${i}/src/index.ts`);
     MainFile()
+
+    exec(`echo "${TestCommandGen}" > ~/${replacedWhiteSpace}-${i}/src/commands/ping.js`);
+    TestCommandFile()
+
+    exec(`echo "${ReadyEventGen}" > ~/${replacedWhiteSpace}-${i}/src/events/ready.js`);
+    ReadyEventFile()
+
+    exec(`echo "${InteractionCreateEvent}" > ~/${replacedWhiteSpace}-${i}/src/events/interactionCreate.js`);
+    InteractionCreateFile()
+
+    exec(`echo "${CommandHandlerGen}" > ~/${replacedWhiteSpace}-${i}/src/handlers/commandHandler.js`);
+    CommandHandlerFile()
+
+    exec(`echo "${EventHandlerGen}" > ~/${replacedWhiteSpace}-${i}/src/handlers/eventHandler.js`);
+    EventHandlerFile()
+
+    exec(`echo '{
+        "TOKEN": "${token}",
+        "guildID": "${guildID}",
+        "botID": "${botID}"
+}' > ~/${replacedWhiteSpace}-${i}/config/config.json`);
+    ConfigFile()
+
+    exec(`echo '{"compilerOptions": {"target": "es2016","module": "commonjs","resolveJsonModule": true,"esModuleInterop": true,"forceConsistentCasingInFileNames": true,"strict": true,"skipLibCheck": true  }}' > ~/${replacedWhiteSpace}-${i}/tsconfig.json`);
+    TSConfig()
+
+    exec(`echo '${PkgJSONGen}' > ~/${replacedWhiteSpace}-${i}/package.json`);
+    PkgJSONFile()
+
+    exec(`cd ~/${replacedWhiteSpace}-${i} && npm install discord.js @discordjs/builders @discordjs/rest discord-api-types`);
+    PkgInstall()
+
+    exec(`cd ~/${replacedWhiteSpace}-${i}/ && tsc`);
+    TSBuild()
 }

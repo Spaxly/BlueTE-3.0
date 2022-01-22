@@ -8,7 +8,7 @@ module.exports = (client) => {
     const commands = [];
         const commandFiles = fs.readdirSync(path.join(__dirname, '../commands')).filter(file => file.endsWith('.js'));
         for (const file of commandFiles) {
-            const command = require('../commands/ ' + file);
+            const command = require('../commands/' + file);
             commands.push(command.data.toJSON());
             client.commands.set(command.data.name, command)
         }
@@ -28,5 +28,5 @@ module.exports = (client) => {
 		    console.error(error);
 	    }
     })();
-	console.log(">> Loaded Command Handler!");
+	console.log('>> Loaded Command Handler!');
 }`

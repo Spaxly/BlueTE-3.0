@@ -1,5 +1,5 @@
 export var InteractionCreateEvent = 
-`const { client } = require("../utils/client");
+`const { client } = require('../utils/client');
 
 module.exports = {
     name: 'interactionCreate',
@@ -13,12 +13,10 @@ module.exports = {
 
 	    try {
 		    await command.execute(interaction);
-            console.log(interaction, 'was executed')
 	    } catch (error) {
 			console.error(error);
 		    await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	    }
     }
 }
-
 `
