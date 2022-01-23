@@ -1,18 +1,21 @@
-export var TSBotConfig = 
-`
-{
+export var TSConfigFile = 
+`{
     "compilerOptions": {
-      "target": "ESNext",
-      "module": "ESNext",
-      "outDir": "./build",
-      "rootDir": "./src",
+      "module": "CommonJS", // required
+      "target": "ESNext", // required
+      "noImplicitAny": true,
+      "sourceMap": true,
       "strict": true,
-      "esModuleInterop": true,
-      "moduleResolution": "Node",
-      "experimentalDecorators": true 
-      "emitDecoratorMetadata": true 
-      "skipLibCheck": false,
-      "forceConsistentCasingInFileNames": true
-    }
-  }
-`
+      "outDir": "build",
+      "rootDir": "./src",
+      "emitDecoratorMetadata": true, // required
+      "experimentalDecorators": true, // required
+      "declaration": false,
+      "importHelpers": true, // required
+      "forceConsistentCasingInFileNames": true,
+      "moduleResolution": "Node", // required
+      "esModuleInterop": true,  // required
+      "resolveJsonModule": true,
+    },
+    "exclude": ["node_modules"]
+  }`

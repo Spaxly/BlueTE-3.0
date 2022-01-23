@@ -33,6 +33,10 @@ import { EventHandlerGen } from "../../templates/javascript/eventHandler";
 import { PkgJSONGen } from "../../templates/javascript/packageJSON";
 import { PyBotClient } from "../../templates/python/Bot";
 import { PyTestCommand } from "../../templates/python/TestCommand";
+import { TSIndex } from "../../templates/typescript/Index";
+import { TSTestCommand } from "../../templates/typescript/TestCommand";
+import { TSConfigFile } from "../../templates/typescript/TSConfig";
+import { TSPkgJSON } from "../../templates/typescript/PkgJSON";
 
 export async function JSBotCmd(botName: string, token: string, guildID: string, botID: string) {
     const replacedWhiteSpace = botName.replace(/\s/g, '');
@@ -142,7 +146,7 @@ export async function TSBotCmd(botName: string, token: string, guildID: string, 
     exec(`mkdir ~/${replacedWhiteSpace}-${i}/src`);
     SourceFolder()
 
-    exec(`mkdir ~/${replacedWhiteSpace}-${i}/config`);
+    exec(`mkdir ~/${replacedWhiteSpace}-${i}/src/config`);
     ConfigFolder()
 
     exec(`mkdir ~/${replacedWhiteSpace}-${i}/src/commands`);
@@ -151,4 +155,26 @@ export async function TSBotCmd(botName: string, token: string, guildID: string, 
     exec(`mkdir ~/${replacedWhiteSpace}-${i}/src/utils`);
     UtilsFolder()
 
+    exec(`echo '{
+        "TOKEN": "${token}",
+        "guildID": "${guildID}",
+        "botID": "${botID}"
+}' > ~/${replacedWhiteSpace}-${i}/src/config/config.json`);
+    ConfigFile()
+        
+    exec(`echo '${TSIndex}' > ~/${replacedWhiteSpace}-${i}/src/index.ts`);
+    MainFile()
+
+    exec(`echo '${TSTestCommand}' > ~/${replacedWhiteSpace}-${i}/src/commands/ping.ts`);
+    TestCommandFile()
+
+    exec(`echo '${TSConfigFile}' > ~/${replacedWhiteSpace}-${i}/tsconfig.json`);
+    TSConfig()
+
+    exec(`echo '${TSPkgJSON}' > ~/${replacedWhiteSpace}-${i}/package.json`);
+    PkgJSONFile()
+
+    exec(`cd ~/${replacedWhiteSpace}-${i} && npm install discordx reflect-metadata discord.js @discordx/importer`);
+    exec(`cd ~/${replacedWhiteSpace}-${i} && npm install --save-dev @types/node typescript`);
+    PkgInstall()
 }

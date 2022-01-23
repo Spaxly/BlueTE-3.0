@@ -1,6 +1,7 @@
 import { botNameValue, TokenValue, GuildIDValue, SelectionValue, BotIDValue } from "./Prompts";
 import { BotJS } from "./functions/JSBot";
 import { PyBot } from "./functions/PyBot";
+import { TSBotCmd } from "./commands/Commands";
 
 export async function TemplateGenerator() {
     const botResp = await botNameValue();
@@ -21,6 +22,7 @@ export async function TemplateGenerator() {
     }
 
     if (SelectionResp === 1) {
+        TSBotCmd(botResp, tokenResp, guildIDResp, botIDResp)
         //console.log('TypeScript Works')
     }
 
