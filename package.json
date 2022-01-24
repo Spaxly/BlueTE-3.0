@@ -23,6 +23,7 @@
     "chalk": "^4.0.0",
     "enquirer": "^2.3.6",
     "inquirer": "^8.2.0",
-    "prompt-sync": "^4.1.6"
+    "prompt-sync": "^4.1.6",
+    "prompts": "^2.4.2"
   }
 }
