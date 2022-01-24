@@ -1,6 +1,6 @@
 {
   "name": "bluete-3.0",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a maintained/non-deprecated fork of bluete-2.0",
   "main": "index.js",
   "types": "index.d.ts",

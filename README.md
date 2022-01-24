@@ -31,3 +31,9 @@ Running BlueTE 3.0 is also a breeze! Running the following will execute BlueTE 3
 bluete 
 ```
 
+# Issues  
+
+Support is provided for BlueTE-3.0! For fast responses, join our Discord Server! 
+https://discord.gg/h3hqgFTtTm 
+
+You can also make an issue in the Issues section of this repository!
