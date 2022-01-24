@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "a maintained/non-deprecated fork of bluete-2.0",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "start": "ts-node src/index.ts"
   },
