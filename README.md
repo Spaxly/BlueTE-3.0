@@ -37,3 +37,14 @@ Support is provided for BlueTE-3.0! For fast responses, join our Discord Server!
 https://discord.gg/h3hqgFTtTm 
 
 You can also make an issue in the Issues section of this repository!
+
+# Current Bugs
+
+1. Mac users may have to manually install the dependencies. This can be done by running the following commands:
+
+```bash
+sudo npm install -g bluete-3.0 
+cd <directory of node_modules>
+sudo npm install 
+sudo npm audit fix <if needed>
+```
