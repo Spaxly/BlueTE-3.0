@@ -46,5 +46,6 @@ You can also make an issue in the Issues section of this repository!
 sudo npm install -g bluete-3.0 
 cd <directory of node_modules>
 sudo npm install 
+sudo npm install figlet
 sudo npm audit fix <if needed>
 ```
